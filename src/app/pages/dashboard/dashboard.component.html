@@ -1,0 +1,37 @@
+<div class="app-active" *ngIf="authCompleted">
+  <app-navbar [title]="title" [user]="user ? user : 'nobody'" link="board"></app-navbar>
+  <mat-card>
+    <mat-card-content>
+      <mat-grid-list [cols]="breakpoint" rowHeight="130px" (window:resize)="onResize($event)">
+        <mat-grid-tile [colspan]="2" [rowspan]="2" *ngFor="let group of groupStageData">
+          <mat-card> 
+            <mat-card-title style="text-align:center;"> 
+                Группа {{group.key}} 
+            </mat-card-title>
+            <mat-card-content>
+                <ul class="t-group">
+                  <li *ngFor="let val of group.values">
+                    <div class="t-group-c">{{ val.country }}</div>
+                    <div class="t-group-s"> 
+                      {{ val.matches.stats[0] + ' - ' + 
+                         val.matches.stats[1] + ' - ' + 
+                         val.matches.stats[2] }}
+                    </div>
+                    <div class="t-group-g">
+                      {{ val.matches.goals.scored + ' : ' + val.matches.goals.skipped }}
+                    </div>
+                    <div class="t-group-p"> 
+                      {{ (val.matches.stats[0] * 3) + (val.matches.stats[1] * 1) }} 
+                    </div>
+                  </li>
+                </ul>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<app-circle *ngIf="!authCompleted"></app-circle>

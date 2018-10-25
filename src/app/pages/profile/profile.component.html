@@ -1,0 +1,81 @@
+<div class="app-active" *ngIf="authCompleted">
+  <app-navbar [title]="title" [user]="user ? user : 'nobody'" link="profile"></app-navbar>
+  <mat-card>
+    <mat-card-content>
+
+      <div class="t-b-l">
+        <h2>Информация о пользователе</h2>
+      </div>
+
+      <div class="b-b-l">
+        <app-pic-crop *ngIf="isAvatarMode" 
+                      (toggleAM)="toggleAvatarMode($event)" 
+                      (setProfilePic)="setAvatar($event)">
+        </app-pic-crop>
+      </div>
+      <div class="b-b-l" *ngIf="!isAvatarMode">
+        <div class="b-l-c">
+          <div class="p-f p-f-bs">
+            <button mat-raised-button (click)="toggleEditState()">
+              {{ isEditState ? 'Сохранить' : 'Изменить' }}
+            </button>
+            <button mat-raised-button (click)="openDialog()">
+              {{ isVerified ? 'Изменить email' : 'Подтвердить email' }}
+            </button>
+          </div>
+          <div class="p-s-e" *ngIf="isEditState">
+            <form id="profile-data" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+              <div class="p-f">
+                <mat-form-field>
+                  <input matInput name="benoist-fullname"
+                         placeholder="Имя и фамилия" 
+                         formControlName="fullname"  
+                          />
+                </mat-form-field>
+              </div>
+              <div class="p-f">
+                <mat-form-field>
+                  <input matInput name="benoist-city"
+                         placeholder="Город"  
+                         formControlName="city" 
+                          />
+                </mat-form-field>
+              </div>
+              <div class="p-f">
+                <mat-form-field>
+                  <input matInput name="benoist-hobby"
+                         placeholder="Увлечения"  
+                         formControlName="hobby" 
+                          />
+                </mat-form-field>
+              </div>
+            </form>     
+          </div>
+          <div class="p-s-e" *ngIf="!isEditState">
+            <div class="p-f">
+              <p>Имя и фамилия</p>
+            </div>
+            <div class="p-f">
+              <p>Город</p>
+            </div>
+            <div class="p-f">
+              <p>Увлечения</p>
+            </div>         
+          </div>
+        </div>
+        <div class="b-l-c">
+          <div class="p-f">
+            <div class="p-f-a">
+              <img [src]="profile_img" alt="Изображения нет" *ngIf="profile_img"> 
+              <button mat-raised-button (click)="toggleAvatarMode(true)">
+                Изменить аватар
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+<app-circle *ngIf="!authCompleted"></app-circle>

@@ -1,0 +1,14 @@
+<div class="m-f" *ngIf="!isRequested">
+  <mat-form-field>
+    <input matInput #email placeholder="Email" value="{{ data.email }}" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="sendLetter()">
+    Подтвердить
+  </button>
+</div>
+<div class="m-f" *ngIf="isRequested">
+  <h3>На указанный адрес отправлена ссылка для активации</h3>
+  <button mat-raised-button color="accent" (click)="onCloseConfirm()">
+    {{ data.name }}
+  </button>
+</div>

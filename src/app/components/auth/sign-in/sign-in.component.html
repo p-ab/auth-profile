@@ -1,0 +1,31 @@
+<div class="content">
+
+  <mat-card> 
+    <mat-card-title style="text-align:center;"> Добро пожаловать </mat-card-title>
+    <mat-card-content>
+      <div class="form-box sm-panel">
+        <app-linear *ngIf="isLoading"></app-linear>
+        <div *ngIf="!isLoading">
+          <form id="sign-in" [formGroup]="authform" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+              <input matInput placeholder="Логин / Email" formControlName="person" 
+                    name="benoist-name" (focus)="onFocus()">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="password" placeholder="Пароль" formControlName="password" 
+                    name="benoist-pass">
+            </mat-form-field>
+            <mat-error *ngIf="serverMsg !== 'Всё хорошо'">
+              {{ serverMsg }}
+            </mat-error>
+            <button mat-raised-button color="primary">Войти</button>
+          </form>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-footer *ngIf="!isLoading">
+      <mat-card-subtitle> <a routerLink="/register">Регистрация</a> </mat-card-subtitle>
+    </mat-card-footer>
+  </mat-card>
+
+</div>

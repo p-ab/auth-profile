@@ -1,0 +1,20 @@
+<mat-toolbar class="menu-toolbar">
+  <mat-toolbar-row>
+    <span>{{title}}</span>
+    <span class="spacer"></span>
+    <button mat-button [matMenuTriggerFor]="menu">
+      {{ user ? user.name : 'Опции' }} 
+      <mat-icon>toc</mat-icon></button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item *ngIf="link === 'board'" routerLink="/profile"> 
+        <a>Профиль</a> 
+      </button>
+      <button mat-menu-item *ngIf="link !== 'board'" routerLink="/board"> 
+        <a>На главную</a> 
+      </button>
+      <button mat-menu-item (click)="logout()"> 
+        <a href="#">Выйти</a> 
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>

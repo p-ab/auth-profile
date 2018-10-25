@@ -1,0 +1,22 @@
+.content {
+  height: 100%;
+  min-height: 80vh;
+  display: flex;
+}
+mat-card {
+  width: 400px;
+  max-width: 90%;
+  margin: auto;
+}
+mat-error {
+  margin-bottom: 15px;
+  max-width: 100%;
+  font-size: 16px;
+  color: maroon;
+  text-align: center;
+}
+.captcha {
+  padding: 10px;
+  margin: auto;
+  text-align: center;
+}

@@ -1,0 +1,35 @@
+
+<div class="avatar-content" *ngIf="!isLoading">
+  <div class="a-b-t">
+    <h4>Изменить аватар</h4>
+    <button mat-raised-button color="primary" (click)="fileInput.click()">
+      <mat-icon>library_add</mat-icon>
+      <span>Выбрать</span>
+      <input #fileInput type="file" name="benois-pic" 
+            (change)="fileChangeEvent($event)" style="display:none;" />
+    </button>
+    <button mat-raised-button color="primary" (click)="hideComponent()">
+        Отмена
+    </button>
+  </div>
+  <div class="a-b-imgs">
+    <image-cropper
+        [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="4 / 4"
+        [resizeToWidth]="150"
+        format="png"
+        (imageCropped)="imageCropped($event)"
+        (imageLoaded)="imageLoaded()"
+        (loadImageFailed)="loadImageFailed()"
+    ></image-cropper>
+    <div class="a-b-r" *ngIf="croppedImage">
+      <h3>Результат</h3>
+      <img [src]="croppedImage" class="cropped-imege" />
+      <button mat-raised-button color="accent" (click)="uploadImage()">
+        Загрузить
+      </button>
+    </div>
+  </div>
+</div>
+<app-linear *ngIf="isLoading"></app-linear>

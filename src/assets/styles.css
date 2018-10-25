@@ -1,0 +1,46 @@
+
+h2 {
+  width: 768px;
+  margin: auto;
+  text-align: center;
+}
+
+.auth-container {
+  width: 768px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.mod-3 {
+  width: 33.33333%;
+}
+
+.form-box {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.form-box .form-head {
+  font-size: 22px;
+  font-weight: Bold;
+}
+
+.form-box form {
+  display: flex;
+  flex-flow: column nowrap;
+}
+form .wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+label {
+  font-size: 12px;
+  padding: 3px;
+}
+
+input[type="submit"] {
+  margin-top: 5px;
+}
